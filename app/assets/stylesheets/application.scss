@@ -1,3 +1,7 @@
 input, textarea {
   display: flex;
 }
+
+input[type=checkbox] {
+  display: inline;
+}
