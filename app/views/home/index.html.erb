@@ -1,0 +1,7 @@
+<% @offers.each do |offer| %>
+  <div class="card">
+    <%= premium_label(offer.premium) %>
+    <h1><%= offer.advertiser_name %></h1>
+    <%= link_to "Shop Now", offer.url %>
+  </div>
+<% end %>
