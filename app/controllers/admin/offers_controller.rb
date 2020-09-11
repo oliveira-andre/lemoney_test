@@ -34,6 +34,15 @@ module Admin
       params[:toggle] ? @offer.toggle! : @offer.update!(offers_params)
     end
 
+    def destroy
+      @offer.destroy!
+      flash[:success] = t('offer.destroy_success')
+      redirect_to admin_offers_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:error] = e.record.errors.first
+      redirect_to admin_offers_path
+    end
+
     private
 
     def load_offers
