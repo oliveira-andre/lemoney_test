@@ -20,6 +20,8 @@ WORKDIR $INSTALL_PATH
 
 COPY . .
 
+RUN yarn install
+
 EXPOSE 3000
 
 
