@@ -10,6 +10,15 @@ module Admin
 
     def new; end
 
+    def create
+      Offer.create!(offers_params)
+      flash[:success] = t('offer.create_success')
+      redirect_to admin_offers_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:error] = e.record.errors.first
+      redirect_to new_admin_offer_path
+    end
+
     private
 
     def load_offers
@@ -18,6 +27,12 @@ module Admin
 
     def load_offer
       @offer = params[:id] ? Offer.find(params[:id]) : Offer.new
+    end
+
+    def offers_params
+      params.require(:offer).permit(
+        :advertiser_name, :url, :description, :premium, :starts_at, :ends_at
+      )
     end
   end
 end
