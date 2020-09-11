@@ -7,6 +7,7 @@ class Offer < ApplicationRecord
   validates :description, length: { maximum: 500 }
 
   validate :valid_url
+  validate :ends_at_in_past
 
   before_validation :set_starts_at
 
@@ -22,7 +23,7 @@ class Offer < ApplicationRecord
 
   def toggle!
     if enabled?
-      update(ends_at: Time.zone.now)
+      update(starts_at: Time.zone.now, ends_at: Time.zone.now)
     else
       update(starts_at: Time.zone.now, ends_at: nil)
     end
@@ -34,6 +35,12 @@ class Offer < ApplicationRecord
     return if url.match?(URL_MATCHES)
 
     @errors.add(:url, I18n.t('validations.offer.url.invalid'))
+  end
+
+  def ends_at_in_past
+    return if !ends_at || starts_at <= ends_at
+
+    @errors.add(:ends_at, I18n.t('validations.offer.ends_at.past'))
   end
 
   def set_starts_at
