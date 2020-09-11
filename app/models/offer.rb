@@ -6,6 +6,8 @@ class Offer < ApplicationRecord
   validates :advertiser_name, uniqueness: true
   validates :description, length: { maximum: 500 }
 
+  validate :valid_url
+
   before_validation :set_starts_at
 
   def enabled?
@@ -20,7 +22,13 @@ class Offer < ApplicationRecord
 
   private
 
+  def valid_url
+    return if url.match?(URL_MATCHES)
+
+    @errors.add(:url, t('validations.offer.url.invalid'))
+  end
+
   def set_starts_at
-    self.starts_at = Time.zone.now
+    self.starts_at = Time.zone.now unless starts_at
   end
 end
