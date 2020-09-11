@@ -2,7 +2,10 @@ en:
   offer:
     create_success: Offer was created with success
     update_success: Offer was updated with success
+    destroy_success: Offer was destroied with success
   validations:
     offer:
       url:
         invalid: 'Must be valid'
+      ends_at:
+        past: 'Cannot be before starts at'
