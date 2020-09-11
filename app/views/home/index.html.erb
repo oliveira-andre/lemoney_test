@@ -1,7 +1,20 @@
-<% @offers.each do |offer| %>
-  <div class="card">
-    <%= premium_label(offer.premium) %>
-    <h1><%= offer.advertiser_name %></h1>
-    <%= link_to "Shop Now", offer.url %>
-  </div>
-<% end %>
+<div class="columns is-multiple">
+  <% @offers.each do |offer| %>
+    <div class="column is-4-desktop is-fullhd-mobile">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+          <%= offer.advertiser_name %>
+          <%= premium_label(offer.premium) %>
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="column is-12 has-text-centered">
+            <%= link_to "Shop Now", offer.url,
+              class: offer.premium ? 'button is-primary' : 'button' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
