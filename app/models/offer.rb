@@ -2,6 +2,8 @@
 
 # offer validation and associations
 class Offer < ApplicationRecord
+  scope :actives, -> { Offer.all.map { |offer| offer if offer.enabled? } }
+
   validates :advertiser_name, :url, :description, :starts_at, presence: true
   validates :advertiser_name, uniqueness: true
   validates :description, length: { maximum: 500 }
