@@ -20,6 +20,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rubocop'
+  gem 'shoulda-matchers'
 end
 
 group :development do
