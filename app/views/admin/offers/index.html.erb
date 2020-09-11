@@ -22,7 +22,7 @@
           <%= link_to "[edit]", edit_admin_offer_path(offer.id) %>
         </td>
         <td>
-          <%= link_to enable_or_disable(offer), edit_admin_offer_path(offer.id, toggle: true) %>
+          <%= link_to enable_or_disable(offer), admin_offer_path(offer.id, toggle: true), method: :put %>
         </td>
         <td>
           <%= link_to "[destroy]", admin_offer_path(offer.id), method: :delete %>
