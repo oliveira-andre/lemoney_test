@@ -11,6 +11,11 @@ FactoryBot.define do
       ends_at { Time.zone.now }
     end
 
+    trait :premium do
+      premium { true }
+    end
+
     factory :offer_disabled, traits: [:disabled]
+    factory :offer_premium, traits: [:premium]
   end
 end
