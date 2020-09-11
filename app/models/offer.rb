@@ -2,7 +2,7 @@
 
 # offer validation and associations
 class Offer < ApplicationRecord
-  scope :actives, -> { Offer.all.map { |offer| offer if offer.enabled? } }
+  scope :actives, -> { Offer.all.map { |offer| offer if offer.enabled? }.compact! }
 
   validates_presence_of :advertiser_name, :url, :description, :starts_at
   validates :advertiser_name, uniqueness: true
