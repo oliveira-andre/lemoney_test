@@ -1,15 +1,15 @@
-<%= form_with(model: offer, url: url) do |f| %>
+<%= form_with(model: offer, url: url, local: true) do |f| %>
   <%= f.label :advertiser_name %>
   <%= f.text_field :advertiser_name, required: true %>
 
-  <%= f.label :url %>
-  <%= f.text_field :url, required: true %>
+  <%= f.label :url, 'URL' %>
+  <%= f.url_field :url, required: true %>
 
   <%= f.label :description %>
   <%= f.text_area :description, required: true, maxlength: 500 %>
 
   <%= f.label :starts_at %>
-  <%= f.datetime_field :starts_at, value: input_current_time, min: input_current_time, required: true %>
+  <%= f.datetime_field :starts_at, value: input_current_time, required: true %>
 
   <%= f.label :ends_at %>
   <%= f.datetime_field :ends_at %>
