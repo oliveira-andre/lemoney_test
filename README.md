@@ -1,24 +1,13 @@
-# README
+# Lemoney Challenge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### How to use
 
-Things you may want to cover:
+First of all, lets build. It can take some time then it is a good to take a :coffee:
+```
+docker-compose build
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Create and migrate database schema
+```
+docker-compose run --rm web_app bundle exec rails db:create db:migrate
+```
