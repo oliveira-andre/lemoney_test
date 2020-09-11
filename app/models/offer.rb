@@ -20,12 +20,20 @@ class Offer < ApplicationRecord
     enabled? ? 'enabled' : 'disabled'
   end
 
+  def toggle!
+    if enabled?
+      update(ends_at: Time.zone.now)
+    else
+      update(starts_at: Time.zone.now, ends_at: nil)
+    end
+  end
+
   private
 
   def valid_url
     return if url.match?(URL_MATCHES)
 
-    @errors.add(:url, t('validations.offer.url.invalid'))
+    @errors.add(:url, I18n.t('validations.offer.url.invalid'))
   end
 
   def set_starts_at
