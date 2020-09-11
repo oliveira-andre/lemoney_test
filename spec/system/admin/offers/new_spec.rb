@@ -20,7 +20,7 @@ RSpec.describe :new_offer, type: :system do
     end
   end
 
-  context 'when fill in fields with ends_at not' do
+  context 'when fill in fields with ends_at now' do
     it 'appear disabled on the table' do
       visit '/admin/offers/new'
 

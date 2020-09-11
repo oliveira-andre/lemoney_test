@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe :new_offer, type: :system do
+RSpec.describe :index_offer, type: :system do
   context 'when click on disable link' do
     before do
       create(:offer)
