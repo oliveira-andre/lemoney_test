@@ -8,6 +8,16 @@ class Offer < ApplicationRecord
 
   before_validation :set_starts_at
 
+  def enabled?
+    return Time.zone.now >= starts_at unless ends_at
+
+    Time.zone.now >= starts_at && Time.zone.now <= ends_at
+  end
+
+  def status
+    enabled? ? 'enabled' : 'disabled'
+  end
+
   private
 
   def set_starts_at
