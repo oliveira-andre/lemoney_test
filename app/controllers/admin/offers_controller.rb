@@ -19,6 +19,21 @@ module Admin
       redirect_to new_admin_offer_path
     end
 
+    def edit; end
+
+    def update
+      toggle_or_update
+      flash[:success] = t('offer.update_success')
+      redirect_to admin_offers_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:error] = e.record.errors.first
+      redirect_to edit_admin_offer_path
+    end
+
+    def toggle_or_update
+      params[:toggle] ? @offer.toggle! : @offer.update!(offers_params)
+    end
+
     private
 
     def load_offers
